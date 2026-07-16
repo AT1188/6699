@@ -1,26 +1,39 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+
 proxies:
-  - name: 🇭🇰 香港01
+
+  - name: 🇭🇰 香港01-Mieru
     type: mieru
     server: hk.cdn.games.cdnazuremicrosoft.com
     port: 443
     username: db9e8875-fb87-4a29-a131-1adc7bd9ebf5
     password: db9e8875-fb87-4a29-a131-1adc7bd9ebf5
     udp: true
+    transport: TCP
 
-  - name: 🇭🇰 香港02
+  - name: 🇭🇰 香港02-Mieru
     type: mieru
     server: boxhk.cdnazuremicrosoft.com
     port: 65535
     username: db9e8875-fb87-4a29-a131-1adc7bd9ebf5
     password: db9e8875-fb87-4a29-a131-1adc7bd9ebf5
     udp: true
+    transport: TCP
+
 
 proxy-groups:
-  - name: Mieru
+
+  - name: 🚀 Mieru香港
     type: select
     proxies:
-      - 🇭🇰 香港01
-      - 🇭🇰 香港02
+      - 🇭🇰 香港01-Mieru
+      - 🇭🇰 香港02-Mieru
+
 
 rules:
-  - MATCH,Mieru
+
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀 Mieru香港
